@@ -28,7 +28,7 @@ class LibraryAPI: NSObject {
         isOnline = false
         super.init()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("downloadImage:"), name: "BLDownloadImageNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LibraryAPI.downloadImage(_:)), name: "BLDownloadImageNotification", object: nil)
     }
     
     func getAlbums() -> [Album] {
@@ -67,6 +67,10 @@ class LibraryAPI: NSObject {
                 })
             }
         }
+    }
+    
+    func saveAlbums() {
+        persistencyManager.saveAlbums()
     }
     
     deinit {
